@@ -2,7 +2,7 @@
   <div id="app">
     <div class="main">
       <div class="main__wrapper">
-        <div class="main__header">
+        <!-- <div class="main__header">
           <img
             src="@/assets/img/logo.svg"
             width="300"
@@ -15,15 +15,21 @@
           Это проект V!U!E! Pizza для обучения на профессиональном
           онлайн‑курсе<br />
           <b>«Vue.js для опытных разработчиков».</b>
-        </p>
+        </p> -->
       </div>
+      <AppLayout></AppLayout>
     </div>
   </div>
 </template>
 
 <script>
+import AppLayout from "@/layouts/AppLayout.vue";
+
 export default {
   name: "App",
+  components: {
+    AppLayout,
+  },
 };
 </script>
 
