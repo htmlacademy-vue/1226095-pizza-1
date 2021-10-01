@@ -2,29 +2,8 @@
   <form action="#" method="post">
     <div class="content__wrapper">
       <h1 class="title title--big">Конструктор пиццы</h1>
-      <BuilderDoughSelector></BuilderDoughSelector>
-      <div class="content__diameter">
-        <div class="sheet">
-          <h2 class="title title--small sheet__title">Выберите размер</h2>
-
-          <div class="sheet__content diameter">
-            <label
-              class="diameter__input"
-              :class="`diameter__input--${sizeArr[item.name]}`"
-              v-for="item in size"
-              :key="item.id"
-            >
-              <input
-                type="radio"
-                name="diameter"
-                :value="item.id"
-                class="visually-hidden"
-              />
-              <span>{{ item.name }}</span>
-            </label>
-          </div>
-        </div>
-      </div>
+      <builder-dough-selector></builder-dough-selector>
+      <builder-size-selector></builder-size-selector>
 
       <div class="content__ingredients">
         <div class="sheet">
@@ -111,6 +90,8 @@ import misc from "@/static/misc";
 import pizza from "@/static/pizza";
 import user from "@/static/user";
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector";
+import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector";
+
 const ingredientsArr = {
   Грибы: "mushrooms",
   Чеддер: "cheddar",
@@ -129,16 +110,11 @@ const ingredientsArr = {
   "Блю чиз": "blue_cheese",
 };
 
-const sizeArr = {
-  "23 см": "small",
-  "32 см": "normal",
-  "45 см": "big",
-};
-
 export default {
   name: "Index",
   components: {
     BuilderDoughSelector,
+    BuilderSizeSelector,
   },
   data() {
     return {
@@ -146,7 +122,6 @@ export default {
       pizza,
       user,
       ingredientsArr,
-      sizeArr,
     };
   },
   computed: {

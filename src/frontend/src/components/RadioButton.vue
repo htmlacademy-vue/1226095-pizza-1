@@ -30,7 +30,7 @@ export default {
     },
     checked: {
       type: Boolean,
-      // required: true,
+      required: false,
     },
     boldText: {
       type: String,
