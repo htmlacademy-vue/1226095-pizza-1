@@ -1,16 +1,17 @@
 <template>
   <label class="input">
-    <span class="visually-hidden">Название пиццы</span>
+    <span :class="{ spanHidden: 'visually-hidden'}">{{span}}</span>
     <input
-      type="text"
-      name="pizza_name"
-      placeholder="Введите название пиццы"
+      :type="type"
+      :name="name"
+      :placeholder="placeholder"
+      :required="required"
     />
   </label>
 </template>
 <script>
 export default {
-  name: "RadioButton",
+  name: "Input",
   props: {
     type: {
       type: String,
@@ -24,7 +25,10 @@ export default {
       type: String,
       required: true,
       default: "",
-      hidden: true,
+    },
+    spanHidden: {
+      type: Boolean,
+      required: true
     },
     placeholder: {
       type: String,
