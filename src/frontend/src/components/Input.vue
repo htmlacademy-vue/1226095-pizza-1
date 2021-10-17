@@ -1,6 +1,6 @@
 <template>
   <label class="input">
-    <span :class="{ spanHidden: 'visually-hidden'}">{{span}}</span>
+    <span :class="{ spanHidden: 'visually-hidden' }">{{ span }}</span>
     <input
       :type="type"
       :name="name"
@@ -28,7 +28,7 @@ export default {
     },
     spanHidden: {
       type: Boolean,
-      required: true
+      required: true,
     },
     placeholder: {
       type: String,

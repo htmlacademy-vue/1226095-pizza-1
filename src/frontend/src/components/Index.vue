@@ -4,66 +4,7 @@
       <h1 class="title title--big">Конструктор пиццы</h1>
       <builder-dough-selector></builder-dough-selector>
       <builder-size-selector></builder-size-selector>
-
-      <div class="content__ingredients">
-        <div class="sheet">
-          <h2 class="title title--small sheet__title">Выберите ингредиенты</h2>
-
-          <div class="sheet__content ingredients">
-            <div class="ingredients__sauce">
-              <p>Основной соус:</p>
-              <label
-                class="radio ingredients__input"
-                v-for="item in this.sauces"
-                :key="item.id"
-              >
-                <input type="radio" name="sauce" :value="item.id" checked />
-                <span>{{ item.name }}</span>
-              </label>
-            </div>
-            <div class="ingredients__filling">
-              <p>Начинка:</p>
-
-              <ul class="ingredients__list">
-                <li
-                  class="ingredients__item"
-                  v-for="item in ingredients"
-                  :key="item.id"
-                >
-                  <span
-                    class="filling"
-                    :class="`filling--${ingredientsArr[item.name]}`"
-                  >
-                    {{ item.name }}
-                  </span>
-
-                  <div class="counter counter--orange ingredients__counter">
-                    <button
-                      type="button"
-                      class="counter__button counter__button--minus"
-                      disabled
-                    >
-                      <span class="visually-hidden">Меньше</span>
-                    </button>
-                    <input
-                      type="text"
-                      name="counter"
-                      class="counter__input"
-                      value="0"
-                    />
-                    <button
-                      type="button"
-                      class="counter__button counter__button--plus"
-                    >
-                      <span class="visually-hidden">Больше</span>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <builder-ingredients-selector></builder-ingredients-selector>
 
       <div class="content__pizza">
         <div class="content__constructor">
@@ -91,28 +32,12 @@ import pizza from "@/static/pizza";
 import user from "@/static/user";
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector";
 import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector";
-
-const ingredientsArr = {
-  Грибы: "mushrooms",
-  Чеддер: "cheddar",
-  Салями: "salami",
-  Ветчина: "ham",
-  Ананас: "ananas",
-  Бекон: "bacon",
-  Лук: "onion",
-  Чили: "chile",
-  Халапеньо: "jalapeno",
-  Маслины: "olives",
-  Томаты: "tomatoes",
-  Лосось: "salmon",
-  Моцарелла: "mozzarella",
-  Пармезан: "parmesan",
-  "Блю чиз": "blue_cheese",
-};
+import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector";
 
 export default {
   name: "Index",
   components: {
+    BuilderIngredientsSelector,
     BuilderDoughSelector,
     BuilderSizeSelector,
   },
@@ -121,7 +46,6 @@ export default {
       misc,
       pizza,
       user,
-      ingredientsArr,
     };
   },
   computed: {
@@ -130,12 +54,6 @@ export default {
     },
     size() {
       return this.pizza.sizes;
-    },
-    sauces() {
-      return this.pizza.sauces;
-    },
-    ingredients() {
-      return this.pizza.ingredients;
     },
   },
 };
