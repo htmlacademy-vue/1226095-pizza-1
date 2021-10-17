@@ -5,22 +5,9 @@
       <builder-dough-selector></builder-dough-selector>
       <builder-size-selector></builder-size-selector>
       <builder-ingredients-selector></builder-ingredients-selector>
-
       <div class="content__pizza">
-        <div class="content__constructor">
-          <div class="pizza pizza--foundation--big-tomato">
-            <div class="pizza__wrapper">
-              <div class="pizza__filling pizza__filling--ananas"></div>
-              <div class="pizza__filling pizza__filling--bacon"></div>
-              <div class="pizza__filling pizza__filling--cheddar"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content__result">
-          <p>Итого: 0 ₽</p>
-          <button type="button" class="button" disabled>Готовьте!</button>
-        </div>
+        <builder-pizza-view></builder-pizza-view>
+        <builder-price-counter></builder-price-counter>
       </div>
     </div>
   </form>
@@ -33,10 +20,14 @@ import user from "@/static/user";
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector";
 import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector";
+import BuilderPriceCounter from "@/modules/builder/components/BuilderPriceCounter";
+import BuilderPizzaView from "@/modules/builder/components/BuilderPizzaView";
 
 export default {
   name: "Index",
   components: {
+    BuilderPizzaView,
+    BuilderPriceCounter,
     BuilderIngredientsSelector,
     BuilderDoughSelector,
     BuilderSizeSelector,
