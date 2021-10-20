@@ -7,7 +7,7 @@
       <builder-ingredients-selector></builder-ingredients-selector>
       <div class="content__pizza">
         <builder-pizza-view></builder-pizza-view>
-        <builder-price-counter></builder-price-counter>
+        <builder-price-counter :currentPrice="0"></builder-price-counter>
       </div>
     </div>
   </form>
