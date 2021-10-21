@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: psql
       POSTGRES_DB: pizza
     ports:
-      - 5433:5433
+      - 5432:5432
 
   backend:
     build: src/backend
@@ -20,16 +20,16 @@ services:
     depends_on:
       - db
     ports:
-      - 3001:3001
+      - 3000:3000
 
   frontend:
     build: src/frontend
     command: npm run serve
     environment:
-      PORT: '8081'
+      PORT: '8080'
       HOST: '0.0.0.0'
     ports:
-      - '8081:8081'
+      - '8080:8080'
     volumes:
       - ./src/frontend:/frontend
       - /frontend/node_modules

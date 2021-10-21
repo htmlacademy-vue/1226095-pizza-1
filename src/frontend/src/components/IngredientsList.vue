@@ -1,8 +1,9 @@
 <template>
   <ul class="ingredients__list">
     <li class="ingredients__item" v-for="item in ingredients" :key="item.id">
-      <ingredient :ingredient="item"></ingredient>
-      <counter :className="`ingredients`"></counter>
+      <ingredient :ingredient="item" :countIngredient="0"></ingredient>
+      <counter :className="`ingredients`" :count="count" @setCount="setCount">
+      </counter>
     </li>
   </ul>
 </template>
@@ -22,6 +23,7 @@ export default {
   data() {
     return {
       pizza,
+      count: 0,
     };
   },
   computed: {
@@ -30,6 +32,11 @@ export default {
     },
     ingredients() {
       return this.pizza.ingredients;
+    },
+  },
+  methods: {
+    setCount(count) {
+      this.count = count;
     },
   },
 };

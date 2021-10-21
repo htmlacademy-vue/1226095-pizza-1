@@ -1,5 +1,5 @@
 <template>
-  <AppDrag :transfer-data="ingredient">
+  <AppDrag :transfer-data="ingredient" :draggable="isDragAvailable">
     <span
       class="filling"
       :class="`filling--${ingredientsArr[ingredient.name]}`"
@@ -11,6 +11,7 @@
 
 <script>
 import AppDrag from "@/common/components/AppDrag";
+import { MAX_INGREDIENTS_COUNT } from "@/common/constants";
 const ingredientsArr = {
   Грибы: "mushrooms",
   Чеддер: "cheddar",
@@ -38,11 +39,21 @@ export default {
       type: Object,
       required: true,
     },
+    countIngredient: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
       ingredientsArr,
+      MAX_INGREDIENTS_COUNT,
     };
+  },
+  methods: {
+    isDragAvailable({ countIngredient }) {
+      return countIngredient < MAX_INGREDIENTS_COUNT;
+    },
   },
 };
 </script>
