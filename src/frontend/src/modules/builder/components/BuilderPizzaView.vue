@@ -3,12 +3,17 @@
     <div class="content__constructor">
       <div class="pizza pizza--foundation--big-tomato">
         <div class="pizza__wrapper">
-          <div
-            v-for="ingredient in selectedIngredients"
-            :key="`${ingredient.id}-${ingredient.count}`"
-            class="pizza__filling"
-            :class="`pizza__filling--${INGREDIENTS_ARR[ingredient.name]}`"
-          ></div>
+          <template v-for="ingredient in selectedIngredients">
+            <div
+              v-for="index in ingredient.count"
+              :key="`${index}-${ingredient.count}`"
+              class="pizza__filling"
+              :class="[
+                `pizza__filling--${INGREDIENTS_ARR[ingredient.name]}`,
+                ingredientIndexClass[index - 1],
+              ]"
+            />
+          </template>
         </div>
       </div>
     </div>
@@ -38,6 +43,9 @@ export default {
   computed: {
     selectedIngredients() {
       return this.ingredientsList.filter((item) => item.count > 0);
+    },
+    ingredientIndexClass() {
+      return ["", "pizza__filling--second", "pizza__filling--third"];
     },
   },
   methods: {
