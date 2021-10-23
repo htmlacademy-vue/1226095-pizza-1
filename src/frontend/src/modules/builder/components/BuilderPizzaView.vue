@@ -6,7 +6,7 @@
           <template v-for="ingredient in selectedIngredients">
             <div
               v-for="index in ingredient.count"
-              :key="`${index}-${ingredient.count}`"
+              :key="`${index}-${ingredient.id}`"
               class="pizza__filling"
               :class="[
                 `pizza__filling--${INGREDIENTS_ARR[ingredient.name]}`,
