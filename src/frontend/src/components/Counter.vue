@@ -53,20 +53,17 @@ export default {
   data() {
     return {
       MAX_INGREDIENTS_COUNT,
-      newCount: this.count,
     };
   },
   methods: {
     addItem() {
       if (this.count !== MAX_INGREDIENTS_COUNT) {
-        this.newCount++;
-        this.$emit("setCount", this.newCount);
+        this.$emit("setCount", this.count + 1);
       }
     },
     removeItem() {
       if (this.count > 0) {
-        this.newCount--;
-        this.$emit("setCount", this.newCount);
+        this.$emit("setCount", this.count - 1);
       }
     },
   },

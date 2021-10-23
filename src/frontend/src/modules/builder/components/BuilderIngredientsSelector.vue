@@ -15,7 +15,12 @@
       </div>
       <div class="ingredients__filling">
         <p>Начинка:</p>
-        <ingredients-list></ingredients-list>
+        <ingredients-list
+          :ingredientsList="ingredientsList"
+          @editIngredientCount="
+            (id, newCount) => $emit(`editIngredientCount`, id, newCount)
+          "
+        ></ingredients-list>
       </div>
     </template>
   </Card>
@@ -31,7 +36,12 @@ export default {
     IngredientsList,
     Card,
   },
-  props: {},
+  props: {
+    ingredientsList: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       pizza,

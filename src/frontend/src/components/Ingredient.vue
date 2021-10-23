@@ -1,8 +1,11 @@
 <template>
-  <AppDrag :transfer-data="ingredient" :draggable="isDragAvailable">
+  <AppDrag
+    :transfer-data="ingredient"
+    :draggable="ingredient.count < MAX_INGREDIENTS_COUNT"
+  >
     <span
       class="filling"
-      :class="`filling--${ingredientsArr[ingredient.name]}`"
+      :class="`filling--${INGREDIENTS_ARR[ingredient.name]}`"
     >
       {{ ingredient.name }}
     </span>
@@ -12,23 +15,8 @@
 <script>
 import AppDrag from "@/common/components/AppDrag";
 import { MAX_INGREDIENTS_COUNT } from "@/common/constants";
-const ingredientsArr = {
-  Грибы: "mushrooms",
-  Чеддер: "cheddar",
-  Салями: "salami",
-  Ветчина: "ham",
-  Ананас: "ananas",
-  Бекон: "bacon",
-  Лук: "onion",
-  Чили: "chile",
-  Халапеньо: "jalapeno",
-  Маслины: "olives",
-  Томаты: "tomatoes",
-  Лосось: "salmon",
-  Моцарелла: "mozzarella",
-  Пармезан: "parmesan",
-  "Блю чиз": "blue_cheese",
-};
+import { INGREDIENTS_ARR } from "@/common/constants";
+
 export default {
   name: "Ingredient",
   components: {
@@ -39,21 +27,12 @@ export default {
       type: Object,
       required: true,
     },
-    countIngredient: {
-      type: Number,
-      required: true,
-    },
   },
   data() {
     return {
-      ingredientsArr,
+      INGREDIENTS_ARR,
       MAX_INGREDIENTS_COUNT,
     };
-  },
-  methods: {
-    isDragAvailable({ countIngredient }) {
-      return countIngredient < MAX_INGREDIENTS_COUNT;
-    },
   },
 };
 </script>

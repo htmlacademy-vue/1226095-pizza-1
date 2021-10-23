@@ -1,8 +1,16 @@
 <template>
   <ul class="ingredients__list">
-    <li class="ingredients__item" v-for="item in ingredients" :key="item.id">
-      <ingredient :ingredient="item" :countIngredient="0"></ingredient>
-      <counter :className="`ingredients`" :count="count" @setCount="setCount">
+    <li
+      class="ingredients__item"
+      v-for="item in ingredientsList"
+      :key="item.id"
+    >
+      <ingredient :ingredient="item"></ingredient>
+      <counter
+        :className="`ingredients`"
+        :count="item.count"
+        @setCount="(newCount) => setCount(item.id, newCount)"
+      >
       </counter>
     </li>
   </ul>
@@ -12,31 +20,27 @@
 import pizza from "@/static/pizza";
 import ingredient from "@/components/Ingredient";
 import Counter from "@/components/Counter";
-
 export default {
   name: "IngredientsList",
   components: {
     ingredient,
     Counter,
   },
-  props: {},
+  props: {
+    ingredientsList: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       pizza,
-      count: 0,
+      ingredients: [],
     };
   },
-  computed: {
-    sauces() {
-      return this.pizza.sauces;
-    },
-    ingredients() {
-      return this.pizza.ingredients;
-    },
-  },
   methods: {
-    setCount(count) {
-      this.count = count;
+    setCount(id, count) {
+      this.$emit("editIngredientCount", id, count);
     },
   },
 };
