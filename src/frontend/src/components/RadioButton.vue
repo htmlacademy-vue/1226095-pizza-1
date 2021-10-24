@@ -1,11 +1,12 @@
 <template>
-  <label :class="radioClass" @click="onRaidoButtonClick">
+  <label :class="radioClass">
     <input
       type="radio"
       :name="name"
       class="visually-hidden"
-      :checked="checked"
+      :checked="isChecked"
       :value="value"
+      @change="$emit('editSelectValue', $event.target.value)"
     />
     <b v-if="boldText.length">{{ boldText }}</b>
     <span v-if="spanText.length">{{ spanText }}</span>
@@ -25,7 +26,7 @@ export default {
       required: true,
     },
     value: {
-      type: String,
+      type: Number,
       required: true,
     },
     checked: {
@@ -42,15 +43,17 @@ export default {
       required: false,
       default: "",
     },
+    selected: {
+      type: Number,
+      required: false,
+    },
   },
   computed: {
     radioClass() {
       return this.className;
     },
-  },
-  methods: {
-    onRaidoButtonClick(evt) {
-      this.$emit("radioClick", evt.target.value);
+    isChecked() {
+      return this.selected === this.value;
     },
   },
 };

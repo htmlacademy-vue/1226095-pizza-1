@@ -1,28 +1,25 @@
-export const DOUGH_SIZES = [
-  {
-    name: "Тонкое",
-    value: "light",
-  },
-  {
-    name: "Толстое",
-    value: "large",
-  },
-];
-
-export const SAUCES_TYPE = [
-  {
-    name: "Томатный",
-    value: "tomato",
-  },
-  {
-    name: "Сливочный",
-    value: "creamy",
-  },
-];
-
 export const MOVE = "move";
 export const DATA_TRANSFER_PAYLOAD = "payload";
 export const MAX_INGREDIENTS_COUNT = 3;
+export const DOUGH_SIZES = {
+  Тонкое: "light",
+  Толстое: "large",
+};
+export const DOUGH_SIZES_CLASS = {
+  Тонкое: "small",
+  Толстое: "big",
+};
+
+export const SAUCES_TYPE = {
+  Томатный: "tomato",
+  Сливочный: "creamy",
+};
+
+export const SIZES_ARR = {
+  "23 см": "small",
+  "32 см": "normal",
+  "45 см": "big",
+};
 
 export const INGREDIENTS_ARR = {
   Грибы: "mushrooms",

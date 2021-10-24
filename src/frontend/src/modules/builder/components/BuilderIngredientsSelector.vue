@@ -6,10 +6,22 @@
         <p>Основной соус:</p>
         <label
           class="radio ingredients__input"
-          v-for="item in sauces"
+          v-for="item in saucesList"
           :key="item.id"
         >
-          <input type="radio" name="sauce" :value="item.id" checked />
+          <input
+            type="radio"
+            name="sauce"
+            :value="item.id"
+            :checked="item.id === selected"
+            @change="
+              $emit(
+                'editSelectCheckbox',
+                parseInt($event.target.value),
+                `sauce`
+              )
+            "
+          />
           <span>{{ item.name }}</span>
         </label>
       </div>
@@ -41,16 +53,19 @@ export default {
       type: Array,
       required: true,
     },
+    saucesList: {
+      type: Array,
+      required: true,
+    },
+    selected: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
       pizza,
     };
-  },
-  computed: {
-    sauces() {
-      return this.pizza.sauces;
-    },
   },
 };
 </script>

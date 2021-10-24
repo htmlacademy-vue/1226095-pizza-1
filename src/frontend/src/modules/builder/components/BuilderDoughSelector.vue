@@ -3,13 +3,15 @@
     <template v-slot:card-title>Выберите тесто</template>
     <template v-slot:card-content>
       <RadioButton
-        v-for="item in dough"
+        v-for="item in doughList"
         :key="item.id"
         :name="`dought`"
-        :className="`dough__input dough__input--${doughArr[item.name]}`"
+        :className="`dough__input dough__input--${DOUGH_SIZES[item.name]}`"
         :boldText="item.name"
         :spanText="item.description"
-        :value="`${doughArr[item.name]}`"
+        :selected="selected"
+        :value="item.id"
+        @editSelectValue="editSelectValue(item.id)"
       ></RadioButton>
     </template>
   </Card>
@@ -18,28 +20,36 @@
 import Card from "@/components/Card";
 import RadioButton from "@/components/RadioButton";
 import pizza from "@/static/pizza";
-
-const doughArr = {
-  Тонкое: "light",
-  Толстое: "large",
-};
-
+import { DOUGH_SIZES } from "@/common/constants";
 export default {
   name: "BuilderDoughSelector",
   components: {
     RadioButton,
     Card,
   },
-  props: {},
+  model: {
+    prop: "selected",
+    event: "change",
+  },
+  props: {
+    doughList: {
+      type: Array,
+      required: true,
+    },
+    selected: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
-      doughArr,
+      DOUGH_SIZES,
       pizza,
     };
   },
-  computed: {
-    dough() {
-      return this.pizza.dough;
+  methods: {
+    editSelectValue(id) {
+      this.$emit("editSelectCheckbox", id, `dough`);
     },
   },
 };
